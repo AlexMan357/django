@@ -1,0 +1,56 @@
+{% extends 'shopapp/base.html' %}
+{% load cache %}
+
+{% block title %}
+    Orders list
+{% endblock %}
+
+{% block body %}
+  <div>
+          {% for user, orders in object_list.items %}
+              <h4>
+                  User
+                  <a href = "{% url 'shopapp:user_order_list' user_id=user.pk %}">
+                    {{ user.username }}
+                  </a>
+                  completed following orders:
+              </h4>
+
+          {% cache 100 cache_order_list user.pk %}
+              {% for order in orders %}
+              <div>
+                <ul>
+
+                    <p> <a href = "{% url 'shopapp:order_details' pk=order.pk %}"> Details #{{ order.pk }}</a> </p>
+                    <p> Order by {% firstof order.user.firstname order.user.username %} </p>
+                    <p> Promocode: <code> {{ order.promocode }} </code> </p>
+                    <p> Delivery address: {{ order.delivery_address }} </p>
+
+                    <div>
+                        Products in order:
+                    </div>
+
+                    <ul>
+                        {% for product in order.products.all %}
+                            <li> {{product.name}} for ${{product.price}} </li>
+                        {% endfor %}
+                    </ul>
+
+                </ul>
+                      {% empty %}
+                       <div> User has no orders yet </div>
+              {% endfor %}
+              </div>
+          {% endcache %}
+        {% endfor %}
+
+  </div>
+
+  <div>
+      <a href="{% url 'shopapp:order_create' %}">
+          Create a new order
+      </a>
+  </div>
+
+
+{% endblock %}

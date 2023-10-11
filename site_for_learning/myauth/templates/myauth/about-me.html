@@ -1,0 +1,40 @@
+{% extends 'myauth/base.html' %}
+{% load cache %}
+
+{% block title %}
+    About user
+{% endblock %}
+
+{% block body %}
+    <h1> User info:</h1>
+    <div>
+        Now : {% now 'u' %}
+    </div>
+
+    {% if user.is_authenticated %}
+        {% cache 300 userinfo request.user.username %}
+            <h2> Detail: </h2>
+            <p> Username: {{ user.username }} </p>
+            <p> Firstname: {{ user.first_name }} </p>
+            <p> Lastname: {{ user.last_name }} </p>
+            <p> Biography: {{ user.profile.bio }} </p>
+            <p> E-mail: {{ user.email }} </p>
+        {% endcache %}
+
+    {% else %}
+        <h2> User is anonymous </h2>
+    {% endif %}
+
+    {% if user.profile.avatar %}
+        <img src="{{ user.profile.avatar.url }}" alt="{{ user.profile.avatar.name }}">
+    {% else %}
+        No avatar yet
+    {% endif %}
+
+    <div>
+    {% if user.profile %}
+       <a href="{% url 'myauth:profile' pk=user.profile.pk %}"> Change profile </a>
+    {% endif %}
+    </div>
+
+{% endblock %}

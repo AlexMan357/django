@@ -1,0 +1,62 @@
+{% extends 'myauth/base.html' %}
+
+{% block title %}
+    Users list
+{% endblock %}
+
+{% block style %}
+
+    .user-list{border: 1px solid gray;border-collapse: collapse;}
+
+    .user-list td, .user-list th {
+            border: 1px solid gray;
+            padding: 5px;
+    }
+{% endblock %}
+
+
+{% block body %}
+   <table class="user-list">
+    <thead>
+        <tr>
+            <th> Username </th>
+            <th> Lastname </th>
+            <th> Is_staff </th>
+            <th> Avatar </th>
+            <th> Link to change </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+          <tr>
+              <th> {{ user.username }} </th>
+              <th> {{ user.last_name }} </th>
+              <th> {{ user.is_staff }} </th>
+              <th>
+                  {% if user.profile.avatar %}
+                    <img src="{{ user.profile.avatar.url }}" alt="{{ user.profile.avatar.name }}">
+                  {% endif %}
+              </th>
+              <th>
+                  {% if user == active_user or active_user.is_staff %}
+                    {% if user.profile %}
+                        <a href="../profile/{{user.profile.pk}}"> Change profile </a>
+                    {% endif %}
+                  {% endif %}
+              </th>
+
+          </tr>
+
+        {% empty %}
+            <tr>
+                <th> No users </th>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+
+  </table>
+
+{% endblock %}
+
+</html>

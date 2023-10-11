@@ -1,0 +1,55 @@
+{% extends 'shopapp/base.html' %}
+{% load cache %}
+
+{% block title %}
+    Shop Index Page
+{% endblock %}
+
+{% block body %}
+  <h1> Hello Shop Index </h1>
+
+  <div>
+    <ul>
+        {% for name, count in countries %}
+          <li> {{ name|upper }} population: {{count}} millions </li>
+
+          {% if count > 100 %}
+          <span> big country </span>
+          {% endif %}
+
+          {% comment %}
+             <span> {% name|length_is:'7' %} </span>
+          {% endcomment %}
+
+        {% empty %}
+          No products
+        {% endfor %}
+    </ul>
+  </div>
+
+  <div>
+      <strong>
+          You have {{ items }} cherr{{ items|pluralize:"y,ies" }}
+      </strong>
+  </div>
+  <div>
+   {{ countries|join:' * ' }}
+  </div>
+
+  <div>
+   {{ countries|slugify }}
+  </div>
+
+  <div>
+    Time running: {{time_running}}
+  </div>
+
+  {% cache 100 lorem %}
+      <div>
+        {% lorem random %}
+      </div>
+  {% endcache %}
+
+{% endblock %}
+
+</html>
