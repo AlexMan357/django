@@ -134,7 +134,7 @@ WSGI_APPLICATION = 'site_for_learning.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/root/projects/django/site_for_learning/database/db.sqlite3',
+        'NAME': DATABASE_DIR / 'db.sqlite3',
     }
 }
 
