@@ -21,4 +21,4 @@ services:
         max-size: "200k"
 
     volumes:
-      - ./site_for_learning/"database":/django-app/database
+      - ./site_for_learning/database:/django-app/database
