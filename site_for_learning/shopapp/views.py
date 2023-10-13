@@ -424,17 +424,16 @@ class UserOrdersListView(ListView):
 
 class OrdersListView(LoginRequiredMixin, ListView):
     """ Реализует страницу со списком заказов всех пользователей """
-    # template_name = 'shopapp/order_list.html'
-    # queryset = {
-    #     user:
-    #     Order.objects
-    #     .filter(user=user.pk)
-    #     .prefetch_related('products')
-    #     .all()
-    #     for user in User.objects.only("pk", "username").all()
-    #
-    # }
-    pass
+    template_name = 'shopapp/order_list.html'
+    queryset = {
+        user:
+        Order.objects
+        .filter(user=user.pk)
+        .prefetch_related('products')
+        .all()
+        for user in User.objects.only("pk", "username").all()
+
+    }
 
 
 class OrderDetailView(PermissionRequiredMixin, DetailView):
