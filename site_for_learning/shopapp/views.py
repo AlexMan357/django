@@ -27,7 +27,7 @@ from django.views.generic import (
     DeleteView
 )
 
-from site_for_learning.settings import LOGIN_URL
+# from site_for_learning.settings import LOGIN_URL
 from .common import common_read_csv_file
 from .forms import ProductForm, OrderForm, GroupForm
 from .models import Product, Order
@@ -419,21 +419,22 @@ class UserOrdersListView(ListView):
         print('UserOrdersListView.Finished processing GET request')
         if args[0].user.is_authenticated:
             return response
-        return redirect(LOGIN_URL)
+        return redirect(reverse("myauth:login")) #LOGIN_URL
 
 
 class OrdersListView(LoginRequiredMixin, ListView):
     """ Реализует страницу со списком заказов всех пользователей """
-    template_name = 'shopapp/order_list.html'
-    queryset = {
-        user:
-        Order.objects
-        .filter(user=user.pk)
-        .prefetch_related('products')
-        .all()
-        for user in User.objects.only("pk", "username").all()
-
-    }
+    # template_name = 'shopapp/order_list.html'
+    # queryset = {
+    #     user:
+    #     Order.objects
+    #     .filter(user=user.pk)
+    #     .prefetch_related('products')
+    #     .all()
+    #     for user in User.objects.only("pk", "username").all()
+    #
+    # }
+    pass
 
 
 class OrderDetailView(PermissionRequiredMixin, DetailView):
