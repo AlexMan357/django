@@ -98,7 +98,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'requestdataapp.middlewares.set_useragent_on_request_middleware',
+    # 'requestdataapp.middlewares.set_useragent_on_request_middleware',
     'requestdataapp.middlewares.CountRequestsMiddleware',
     'requestdataapp.middlewares.ThrottlingRequestsMiddleware',
 
