@@ -99,7 +99,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     # 'requestdataapp.middlewares.set_useragent_on_request_middleware',
-    'requestdataapp.middlewares.CountRequestsMiddleware',
+    # 'requestdataapp.middlewares.CountRequestsMiddleware',
     # 'requestdataapp.middlewares.ThrottlingRequestsMiddleware',
 
     'django.contrib.admindocs.middleware.XViewMiddleware',
