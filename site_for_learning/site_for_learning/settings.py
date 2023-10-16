@@ -100,7 +100,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     # 'requestdataapp.middlewares.set_useragent_on_request_middleware',
     'requestdataapp.middlewares.CountRequestsMiddleware',
-    'requestdataapp.middlewares.ThrottlingRequestsMiddleware',
+    # 'requestdataapp.middlewares.ThrottlingRequestsMiddleware',
 
     'django.contrib.admindocs.middleware.XViewMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
