@@ -103,7 +103,7 @@ MIDDLEWARE = [
     # 'requestdataapp.middlewares.ThrottlingRequestsMiddleware',
 
     'django.contrib.admindocs.middleware.XViewMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
